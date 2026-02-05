@@ -10,15 +10,6 @@ const Success = () => {
     const timeDiff = Math.abs(today - startDate);
     const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
     setDaysSince(diffDays);
-
-    // Trigger confetti using the window object (no import needed)
-    if (window.confetti) {
-      window.confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-    }
   }, []);
 
   return (
