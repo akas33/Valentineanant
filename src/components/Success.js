@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import confetti from "canvas-confetti";
 
 const Success = () => {
   const [daysSince, setDaysSince] = useState(0);
@@ -12,12 +11,14 @@ const Success = () => {
     const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
     setDaysSince(diffDays);
 
-    // Trigger confetti
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 },
-    });
+    // Trigger confetti using the window object (no import needed)
+    if (window.confetti) {
+      window.confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    }
   }, []);
 
   return (
@@ -31,7 +32,7 @@ const Success = () => {
       
       <div className="days-counter">
         <span className="days-count-number">{daysSince}</span>
-        <p>Days of knowing each other since Sep 25, 2023</p>
+        <p>Days since Sep 25, 2023</p>
       </div>
     </div>
   );
