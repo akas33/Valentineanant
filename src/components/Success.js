@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ourPhoto from "../our-photo.jpg"; // Moved from App.js to here
 
 const Success = () => {
   const [daysSince, setDaysSince] = useState(0);
@@ -13,18 +14,22 @@ const Success = () => {
 
   return (
     <div className="success-container">
-      <img 
-        src="https://media.tenor.com/gUv1Ou87D8MAAAAi/milk-and-mocha.gif" 
-        alt="Success Kiss" 
-        className="App-gif" 
-      />
-      {/* UPDATED LINE HERE */}
+      {/* Your photo now appears after clicking Yes */}
+      <img src={ourPhoto} alt="Us" className="App-photo" />
+      
       <h1 className="App-text">Yay! See you on Valentine's Day, Babu... ❤️</h1>
       
       <div className="days-counter">
         <span className="days-count-number">{daysSince}</span>
         <p>Days since Sep 25, 2023</p>
       </div>
+      
+      <img 
+        src="https://media.tenor.com/gUv1Ou87D8MAAAAi/milk-and-mocha.gif" 
+        alt="Success Kiss" 
+        className="App-gif" 
+        style={{ marginTop: '20px' }}
+      />
     </div>
   );
 };
