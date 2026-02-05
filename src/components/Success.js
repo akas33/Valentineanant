@@ -1,28 +1,37 @@
-import React from "react";
-import kisses from "../kisses.gif";
+import React, { useEffect, useState } from "react";
+import confetti from "canvas-confetti";
 
 const Success = () => {
-  const startDate = new Date(2021, 11, 7); // Dec 7, 2021
-  const daysTogether = Math.floor((new Date() - startDate) / (1000 * 60 * 60 * 24));
+  const [daysSince, setDaysSince] = useState(0);
+
+  useEffect(() => {
+    // Calculate days since Sep 25, 2023
+    const startDate = new Date("2023-09-25");
+    const today = new Date();
+    const timeDiff = Math.abs(today - startDate);
+    const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    setDaysSince(diffDays);
+
+    // Trigger confetti
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }, []);
 
   return (
-    <div className="App-success">
-      <img className="App-gif" src={kisses} alt="Kisses" />
-      <h2 style={{ color: "#ff4d6d", fontSize: "2.2rem" }}>Let's go, Bro! 👊❤️</h2>
+    <div className="success-container">
+      <img 
+        src="https://media.tenor.com/gUv1Ou87D8MAAAAi/milk-and-mocha.gif" 
+        alt="Success Kiss" 
+        className="App-gif" 
+      />
+      <h1 className="App-text">Yay! See you on Valentine's Day, Anant! ❤️</h1>
       
       <div className="days-counter">
-        <span className="days-count-number">{daysTogether} Days</span>
-        <p style={{fontSize: '14px', color: '#888', margin: '5px 0 0'}}>of amazing memories together</p>
-      </div>
-
-      <div style={{ color: "#444", margin: "20px 0", fontSize: "1.1rem" }}>
-        <p>You inspire me every single day. ⭐</p>
-        <p>Grateful for how you care for me, Sweety. ✨</p>
-      </div>
-
-      <div style={{ borderTop: "1px solid #eee", paddingTop: "20px", marginTop: "20px" }}>
-         <p style={{ fontSize: "1.1rem", color: "#666", fontWeight: "bold" }}>Dec 7, 2021 • 7:00 PM</p>
-         <p style={{ color: "#ff4d6d", fontSize: "1.6rem", marginTop: "15px" }}>Yours Forever ❤️</p>
+        <span className="days-count-number">{daysSince}</span>
+        <p>Days of knowing each other since Sep 25, 2023</p>
       </div>
     </div>
   );
