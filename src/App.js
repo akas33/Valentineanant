@@ -22,7 +22,6 @@ const App = () => {
   const handleOpenMessage = () => {
     setOpened(true);
     if (iframeRef.current) {
-      // Triggers the YouTube API to play and unmute
       iframeRef.current.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
       iframeRef.current.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
     }
@@ -30,14 +29,6 @@ const App = () => {
 
   const handleAccept = () => {
     setAccepted(true);
-    if (window.confetti) {
-      window.confetti({ 
-        particleCount: 150, 
-        spread: 70, 
-        origin: { y: 0.6 },
-        colors: ['#ff4d6d', '#ffffff', '#ffccd5']
-      });
-    }
   };
 
   const handleReject = () => {
@@ -52,9 +43,10 @@ const App = () => {
 
   const rejectionGifs = [flowerBear, cryingBear, beggingBear, madBear, heartBear, pointBear];
   
+  // UPDATED LINES HERE
   const rejectionTexts = [
     "No", 
-    "Are you sure, Anant? 🥺", 
+    "Are you sure?", 
     "But we've been since Sep 2023! 😲", 
     "I'm telling your mom! 🏃‍♂️", 
     "Don't do this to me 💔", 
@@ -63,7 +55,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* Updated Song: Aankhon Se Batana - Autoplay starts at 24s */}
       <iframe 
         ref={iframeRef} 
         width="0" height="0" 
@@ -82,7 +73,8 @@ const App = () => {
           </div>
         ) : !accepted ? (
           <div className="asking-container">
-            <h1 className="App-text">Will you be my Valentine, Anant?</h1>
+            {/* UPDATED LINE HERE */}
+            <h1 className="App-text">Will you be my Valentine, Rohitas?</h1>
             <img 
               src={rejectionGifs[Math.min(noCount, rejectionGifs.length - 1)]} 
               alt="Mood Bear" 
@@ -122,4 +114,3 @@ const App = () => {
 };
 
 export default App;
-                                         
