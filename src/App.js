@@ -2,14 +2,13 @@ import React, { useState, useRef } from "react";
 import "./App.css";
 import Success from "./components/Success";
 
-// GIF/Photo Imports
+// GIF Imports
 import flowerBear from "./flowerBear.gif";
 import cryingBear from "./crying.gif";
 import beggingBear from "./begging.gif";
 import madBear from "./madBear.gif";
 import heartBear from "./heart.gif"; 
 import pointBear from "./point.gif"; 
-import ourPhoto from "./our-photo.jpg"; 
 
 const App = () => {
   const [opened, setOpened] = useState(false);
@@ -42,16 +41,7 @@ const App = () => {
   };
 
   const rejectionGifs = [flowerBear, cryingBear, beggingBear, madBear, heartBear, pointBear];
-  
-  // UPDATED LINES HERE
-  const rejectionTexts = [
-    "No", 
-    "Are you sure?", 
-    "But we've been since Sep 2023! 😲", 
-    "I'm telling your mom! 🏃‍♂️", 
-    "Don't do this to me 💔", 
-    "Click the green one! 🫠✨"
-  ];
+  const rejectionTexts = ["No", "Are you sure?", "But we've been since Sep 2023! 😲", "I'm telling your mom! 🏃‍♂️", "Don't do this to me 💔", "Click the green one! 🫠✨"];
 
   return (
     <div className="App">
@@ -67,40 +57,19 @@ const App = () => {
         {!opened ? (
           <div className="pulse">
             <div className="bebe-tag">Established 25 Sep 2023</div>
-            <img src={ourPhoto} alt="Us" className="App-photo" />
-            <h1 className="App-text">I've been keeping a secret since 2023...</h1>
+            {/* Simple first page: No Photo here */}
+            <h1 className="App-text">I have a question for you...</h1>
             <button className="App-button btn-yes" onClick={handleOpenMessage}>Open ❤️</button>
           </div>
         ) : !accepted ? (
           <div className="asking-container">
-            {/* UPDATED LINE HERE */}
             <h1 className="App-text">Will you be my Valentine, Rohitas?</h1>
-            <img 
-              src={rejectionGifs[Math.min(noCount, rejectionGifs.length - 1)]} 
-              alt="Mood Bear" 
-              className="App-gif" 
-            />
-            
+            <img src={rejectionGifs[Math.min(noCount, rejectionGifs.length - 1)]} alt="Mood Bear" className="App-gif" />
             <div className="button-group">
               <div className="yes-container">
-                <button 
-                  className="App-button btn-yes" 
-                  style={{ transform: `scale(${yesButtonSize})` }} 
-                  onClick={handleAccept}
-                >
-                  Yes
-                </button>
+                <button className="App-button btn-yes" style={{ transform: `scale(${yesButtonSize})` }} onClick={handleAccept}>Yes</button>
               </div>
-
-              <button 
-                className="App-button btn-no" 
-                onClick={handleReject} 
-                onMouseEnter={handleReject}
-                style={{ 
-                    transform: `translate(${noButtonPos.x}px, ${noButtonPos.y}px)`,
-                    zIndex: 1000 
-                }}
-              >
+              <button className="App-button btn-no" onClick={handleReject} onMouseEnter={handleReject} style={{ transform: `translate(${noButtonPos.x}px, ${noButtonPos.y}px)`, zIndex: 1000 }}>
                 {rejectionTexts[Math.min(noCount, rejectionTexts.length - 1)]}
               </button>
             </div>
