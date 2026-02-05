@@ -4,7 +4,6 @@ const Success = () => {
   const [daysSince, setDaysSince] = useState(0);
 
   useEffect(() => {
-    // Calculate days since Sep 25, 2023
     const startDate = new Date("2023-09-25");
     const today = new Date();
     const timeDiff = Math.abs(today - startDate);
@@ -19,7 +18,8 @@ const Success = () => {
         alt="Success Kiss" 
         className="App-gif" 
       />
-      <h1 className="App-text">Yay! See you on Valentine's Day, Anant! ❤️</h1>
+      {/* UPDATED LINE HERE */}
+      <h1 className="App-text">Yay! See you on Valentine's Day, Babu... ❤️</h1>
       
       <div className="days-counter">
         <span className="days-count-number">{daysSince}</span>
