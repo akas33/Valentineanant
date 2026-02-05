@@ -1,152 +1,94 @@
-/* 1. IMPORT FONT */
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
-/* 2. BASE RESET */
-body { 
-  margin: 0; 
-  background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%); 
-  overflow: hidden; /* Prevents scrollbars when button grows or jumps */
-  width: 100vw;
-  height: 100vh;
-}
-
-* { 
-  font-family: "Lobster", cursive; 
-  text-align: center; 
-  box-sizing: border-box; 
-}
-
-.App { 
-  min-height: 100vh; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 15px; 
-}
-
-/* 3. THE CARD CONTAINER (Glass Look) */
-.App-body { 
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px);
-  padding: 30px 20px; 
-  border-radius: 40px; 
-  box-shadow: 0 20px 50px rgba(255, 77, 109, 0.2); 
-  width: 100%; 
-  max-width: 450px; 
-  z-index: 1;
-}
-
-/* 4. VISUALS */
-.App-photo { 
-  width: 100%; 
-  max-width: 250px; 
-  height: 250px; 
-  object-fit: cover; 
-  border: 10px solid white; 
-  border-radius: 5px; 
-  transform: rotate(-3deg); 
-  margin-bottom: 20px; 
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-}
-
-.App-gif { 
-  width: 100%; 
-  max-width: 180px; 
-  border-radius: 20px; 
-  margin-bottom: 15px; 
-}
-
-.App-text { 
-  color: #4a4a4a; 
-  font-size: 24px; 
-  margin-bottom: 20px; 
-}
-
-.bebe-tag { 
-  background: #ff4d6d; 
-  color: white; 
-  padding: 5px 15px; 
-  border-radius: 20px; 
-  font-size: 14px; 
-  margin-bottom: 10px; 
-  display: inline-block; 
-}
-
-/* 5. BUTTON GROUP & LAYOUT LOCK */
-.button-group { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  gap: 30px; 
-  min-height: 280px; /* Space for Yes button to grow without shifting text */
-  position: relative; 
-  width: 100%;
-}
-
-/* Fixed container for the Yes button to grow from center */
-.yes-container {
-  width: 120px;
-  height: 120px;
+/* Main Container */
+.valentine-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #fff0f3; /* Soft Pink */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.App-button { 
-  padding: 12px 25px; 
-  font-size: 18px; 
-  cursor: pointer; 
-  border-radius: 50px; 
-  border: none; 
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+/* The GIFs */
+img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
-.btn-yes { 
-  background: #2ecc71; 
-  color: white; 
-  z-index: 5; /* Lower layer so Red stays on top */
-  position: absolute; /* Locks position to the yes-container */
-  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+/* Main Heading */
+.text-container {
+  font-size: 2.5rem;
+  color: #ff4d6d;
+  font-weight: 800;
+  margin: 10px 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-.btn-no { 
-  background: #ff4d6d; 
-  color: white; 
-  z-index: 999 !important; /* Force RED on top always */
-  white-space: nowrap; 
-  position: relative;
-  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+/* New: The Date Tag */
+.established-tag {
+  font-size: 1.1rem;
+  color: #590d22;
+  font-weight: 600;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  opacity: 0.8;
 }
 
-/* 6. SUCCESS PAGE */
-.days-counter { 
-  background: white; 
-  padding: 15px; 
-  border-radius: 20px; 
-  margin: 15px 0; 
-  border: 2px dashed #ff4d6d; 
+/* Button Group Wrapper */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
-.days-count-number { 
-  font-size: 38px; 
-  color: #ff4d6d; 
-  display: block; 
+/* Yes Button Styling */
+.yes-button {
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+  transition: transform 0.2s ease;
 }
 
-/* 7. ANIMATIONS */
-.pulse { 
-  animation: pulse 2s infinite ease-in-out; 
+/* No Button Styling */
+.no-button {
+  background-color: #800f2f;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-@keyframes pulse { 
-  0%, 100% { transform: scale(1); } 
-  50% { transform: scale(1.03); } 
+/* Success Message */
+.success-msg {
+  font-size: 3rem;
+  color: #ff4d6d;
+  animation: pulse 1.5s infinite;
 }
 
-/* Mobile Screen Safety */
-@media (max-width: 450px) {
-  .App-text { font-size: 20px; }
-  .button-group { min-height: 220px; }
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 480px) {
+  .text-container { font-size: 1.8rem; }
+  .established-tag { font-size: 0.9rem; }
 }
